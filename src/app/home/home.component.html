@@ -1,0 +1,42 @@
+<div class="panel">
+    <div class="list-group">
+        <div class="list-group-item">
+            <h2 class="list-group-item-heading">Istaknuti poslovi</h2>
+        </div>
+        <app-spinner *ngIf="!highlightedLoaded"></app-spinner>
+        <a routerLink="/job/{{ job.id }}" class="list-group-item highlighted" *ngFor="let job of highlightedJobs">
+            <p class="list-group-item-text date">{{ job.created | date: "dd.MM.yyyy." }}</p>
+            <p class="list-group-item-text type">{{ types[job.type] }}</p>
+            <h4 class="list-group-item-heading">{{ job.title }}</h4>
+            <p class="list-group-item-text">{{ locations[job.location] }}, {{ job.name }}</p>
+        </a>
+    </div>
+</div>
+<div class="panel">
+    <div class="list-group">
+        <div class="list-group-item">
+            <h2 class="list-group-item-heading">Najtraženiji poslovi</h2>
+        </div>
+        <app-spinner *ngIf="!mostViewedLoaded"></app-spinner>
+        <a routerLink="/job/{{ job.id }}" class="list-group-item" *ngFor="let job of mostViewedJobs | reverse">
+            <p class="list-group-item-text date">{{ job.created | date: "dd.MM.yyyy." }}</p>
+            <p class="list-group-item-text type">{{ types[job.type] }}</p>
+            <h4 class="list-group-item-heading">{{ job.title }}</h4>
+            <p class="list-group-item-text">{{ locations[job.location] }}, {{ job.name }}</p>
+        </a>
+    </div>
+</div>
+<div class="panel">
+    <div class="list-group">
+        <div class="list-group-item">
+            <h2 class="list-group-item-heading">Najnoviji poslovi</h2>
+        </div>
+        <app-spinner *ngIf="!mostRecentLoaded"></app-spinner>
+        <a routerLink="/job/{{ job.id }}" class="list-group-item" *ngFor="let job of mostRecentJobs | reverse">
+            <p class="list-group-item-text date">{{ job.created | date: "dd.MM.yyyy." }}</p>
+            <p class="list-group-item-text type">{{ types[job.type] }}</p>
+            <h4 class="list-group-item-heading">{{ job.title }}</h4>
+            <p class="list-group-item-text">{{ locations[job.location] }}, {{ job.name }}</p>
+        </a>
+    </div>
+</div>

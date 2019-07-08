@@ -1,0 +1,22 @@
+<div *ngIf="showAddedSuccessMessage" class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Bravo!</strong> Posao je uspešno dodat
+</div>
+<div *ngIf="showSubscribedSuccessMessage" class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Bravo!</strong> Mail je uspešno dodat na mailing listu
+</div>
+<div class="panel">
+    <div class="list-group">
+        <div class="list-group-item">
+            <h2 class="list-group-item-heading">{{ title }}</h2>
+        </div>
+        <app-spinner *ngIf="!loaded"></app-spinner>
+        <a @slide routerLink="/job/{{ job.id}}" class="list-group-item" *ngFor="let job of jobs | reverse" [class.highlighted]="job.highlighted == '1'">
+            <p class="list-group-item-text date">{{ job.created | date: "dd.MM.yyyy." }}</p>
+            <p class="list-group-item-text type">{{ types[job.type] }}</p>
+            <h4 class="list-group-item-heading">{{ job.title }}</h4>
+            <p class="list-group-item-text">{{ locations[job.location] }}, {{ job.name }}</p>
+        </a>
+    </div>
+</div>

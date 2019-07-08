@@ -1,0 +1,48 @@
+#main {
+    margin-top: 80px;
+    padding-bottom: 60px;
+}
+#content {
+    min-height: 500px;
+}
+#side {
+    min-height: 500px;
+    background: #eee;
+    padding: 20px;
+    border-radius: 5px;
+}
+#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: #222;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #000;
+    color: #eee;
+}
+
+a:hover, a:active, a:focus {
+    outline: 0;
+}
+.navbar-brand {
+    color: #fff;
+    font-size: 26px;
+    margin-top: -8px;
+}
+.navbar-inverse {
+    background: #234;
+    padding: 10px;
+}
+.navbar-nav li a {
+    border-radius: 5px;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    background: #123;
+}
+.glyphicon {
+    top: 2px;
+}
+.navbar-nav li ul li a:hover {
+    background: #fff;
+}

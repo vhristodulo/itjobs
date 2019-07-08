@@ -1,0 +1,58 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/">
+                <i class="glyphicon glyphicon-briefcase"></i> jobs.it
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="/jobs/all">Svi poslovi</a></li>
+                <li routerLinkActive="active"><a routerLink="/jobs/developers">Programeri</a></li>
+                <li routerLinkActive="active"><a routerLink="/jobs/designers">Dizajneri</a></li>
+                <li routerLinkActive="active"><a routerLink="/jobs/other">Ostalo</a></li>
+                <li routerLinkActive="active"><a routerLink="/search">Pretraga</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/">Početna</a></li>
+                <li routerLinkActive="active"><a routerLink="/about">O nama</a></li>
+                <li routerLinkActive="active"><a routerLink="/contact">Kontakt</a></li>
+                <li *ngIf="!loggedIn"><a href="javascript:void(0)" (click)="onLogin()">Prijava</a></li>
+                <li *ngIf="loggedIn" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/mails">Mailing lista</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:void(0)" (click)="onLogout()">Odjava</a></li>
+                    </ul>
+                </li> 
+           </ul>
+        </div>
+    </div>
+</nav>
+<div id="main" class="container">
+    <div class="row">
+        <div class="col-sm-8" id="content">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-sm-4" id="side">
+            <a class="btn btn-success btn-lg btn-block" routerLink="/job-add" role="button">
+                <i class="glyphicon glyphicon-plus-sign move-left"></i>
+                Dodaj novi posao
+            </a>
+            <a class="btn btn-primary btn-lg btn-block" routerLink="/subscribe" role="button">
+                <i class="glyphicon glyphicon-envelope"></i>
+                Prijavi se na mailing listu
+            </a>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <p>&copy; Copyright <a href="https://github.com/vhristodulo" target="_blank">Vladislav Hristodulo 64/12</a> 2019.</p>
+</footer>

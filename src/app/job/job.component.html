@@ -1,0 +1,8 @@
+<div *ngIf="loaded">
+    <h2>{{ job.title }}</h2>
+    <p>{{ types[job.type] }}, <a [href]="job.link" target="_blank">{{ job.name }}</a>, {{ locations[job.location] }}</p>
+    <p>{{ job.created | date: 'dd.MM.yyyy.'}}</p>
+    <p>Broj pregleda: {{ job.views }}</p>
+    <p [innerHTML]="job.description"></p>
+</div>
+<app-spinner *ngIf="!loaded"></app-spinner>

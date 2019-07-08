@@ -1,0 +1,15 @@
+<h2>Prijava na mailing listu</h2>
+<form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" [class.has-error]="!subscribeForm.get('email').valid && subscribeForm.get('email').touched" [class.has-success]="subscribeForm.get('email').valid">
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="E-mail adresa">
+            <span *ngIf="!subscribeForm.get('email').valid && subscribeForm.get('email').touched" class="error-message">
+                <span *ngIf="subscribeForm.get('email').errors['email']">E-mail adresa nije u ispravnom formatu</span>
+                <span *ngIf="subscribeForm.get('email').errors['required']">E-mail adresa je obavezna</span>
+            </span>
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-success right">Prijavi se</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,81 @@
+<h2>Dodaj novi posao</h2>
+<form [formGroup]="addJobForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+    <h4>Podaci o poslu</h4>
+    <div class="form-group" [class.has-error]="!addJobForm.get('title').valid && addJobForm.get('title').touched" [class.has-success]="addJobForm.get('title').valid">
+        <label for="title" class="col-sm-2 control-label">Naslov<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" formControlName="title" placeholder="Naslov">
+            <span *ngIf="!addJobForm.get('title').valid && addJobForm.get('title').touched" class="error-message">
+                <span *ngIf="addJobForm.get('title').errors['maxlength']">Naslov je suviše dugačak</span>
+                <span *ngIf="addJobForm.get('title').errors['minlength']">Naslov je suviše kratak</span>
+                <span *ngIf="addJobForm.get('title').errors['required']">Naslov je obavezan</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group" [class.has-error]="!addJobForm.get('description').valid && addJobForm.get('description').touched" [class.has-success]="addJobForm.get('description').valid">
+        <label for="description" class="col-sm-2 control-label">Opis<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="description" formControlName="description" placeholder="Opis"></textarea>
+            <span *ngIf="!addJobForm.get('description').valid && addJobForm.get('description').touched" class="error-message">
+                Opis je obavezan
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="category" class="col-sm-2 control-label">Kategorija</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="category" formControlName="category">
+                <option *ngFor="let category of categories" value="{{ category.value }}">{{ category.text }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="type" class="col-sm-2 control-label">Tip</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="type" formControlName="type">
+                <option *ngFor="let type of types" value="{{ type.value }}">{{ type.text }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="location" class="col-sm-2 control-label">Lokacija</label>
+        <div class="col-sm-10">
+            <select class="form-control" id="location" formControlName="location">
+                <option *ngFor="let location of locations" value="{{ location.value }}">{{ location.text }}</option>
+            </select>
+        </div>
+    </div>
+    <h4>Podaci o firmi ili osobi koja zapošljava</h4>
+    <div class="form-group" [class.has-error]="!addJobForm.get('name').valid && addJobForm.get('name').touched" [class.has-success]="addJobForm.get('name').valid">
+        <label for="name" class="col-sm-2 control-label">Ime<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Ime">
+            <span *ngIf="!addJobForm.get('name').valid && addJobForm.get('name').touched" class="error-message">
+                Ime je obavezno
+            </span>
+        </div>
+    </div>
+    <div class="form-group" [class.has-error]="!addJobForm.get('email').valid && addJobForm.get('email').touched" [class.has-success]="addJobForm.get('email').valid">
+        <label for="email" class="col-sm-2 control-label">E-mail adresa<span class="red">*</span></label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="E-mail adresa">
+            <span *ngIf="!addJobForm.get('email').valid && addJobForm.get('email').touched" class="error-message">
+                <span *ngIf="addJobForm.get('email').errors['email']">E-mail adresa nije u ispravnom formatu</span>
+                <span *ngIf="addJobForm.get('email').errors['required']">E-mail adresa je obavezna</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="link" class="col-sm-2 control-label">Website</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="link" formControlName="link" placeholder="Websajt">
+            <span *ngIf="!addJobForm.get('link').valid && addJobForm.get('link').touched">Polje je obavezno</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-success">Dodaj posao</button>
+        </div>
+    </div>
+</form>
