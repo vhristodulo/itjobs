@@ -1,0 +1,10 @@
+.title {
+    background: #eee;
+    padding: 10px 20px;
+    margin-top: 0;
+    color: #777;
+}
+table tr th, table tr td {
+    border: 1px solid #eee;
+    padding: 10px;
+}

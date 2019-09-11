@@ -1,3 +1,4 @@
+/*
 .date {
     margin-right: 15px;
     padding: 14px;
@@ -16,4 +17,37 @@
 }
 .highlighted {
     background: #ffa;
+}
+*/
+.title {
+    background: #37b1;
+    padding: 10px 20px;
+    margin-top: 0;
+    color: #777;
+}
+.job {
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.job-company {
+    font-size: 10px;
+    font-weight: bold;
+    color: #888;
+}
+
+.job-created {
+    float: right;
+    font-size: 10px;
+    color: #aaa;
+}
+
+.job-deadline    {
+    font-size: 10px;
+    color: #aaa;
+}
+
+.clear {
+    clear: both;
 }

@@ -1,0 +1,19 @@
+.title {
+    background: #37b1;
+    padding: 10px 20px;
+    margin-top: 0;
+    color: #777;
+}
+
+.job {
+    padding: 20px 0;
+}
+
+.description {
+    padding: 10px;
+}
+
+table tr th, table tr td {
+    border: 1px solid #eee;
+    padding: 5px;
+}

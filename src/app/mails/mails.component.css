@@ -1,3 +1,9 @@
 .left-text {
     text-align: left;
 }
+.title {
+    background: #eee;
+    padding: 10px 20px;
+    margin-top: 0;
+    color: #777;
+}

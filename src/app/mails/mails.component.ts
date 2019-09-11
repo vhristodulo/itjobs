@@ -17,7 +17,7 @@ export class MailsComponent implements OnInit {
   constructor( private jobsService: JobsService ) { }
 
   ngOnInit() {
-    this.jobsService.getAllMails().subscribe( mails => { this.mails = mails; this.loaded = true; });
+    this.jobsService.getAllMails().subscribe( mails => { this.mails = mails.data.data; this.loaded = true; });
   }
 
   onDeleteMail(id: string) {

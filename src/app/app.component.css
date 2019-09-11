@@ -1,48 +1,68 @@
+.navbar-inverse {
+    background: #467;
+    border-color: #eee;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 26px;
+    margin-top: -8px;
+}
+
+.glyphicon {
+    top: 5px;
+}
+
+.navbar-nav li a {
+    color: #fff;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    background: #478;
+}
+
+.navbar-nav li ul li a {
+    color: #222;
+}
+
+.navbar-nav li ul li a:hover {
+    background: #467;
+    color: #fff;
+}
+
+a:hover, a:active, a:focus {
+    outline: 0;
+}
+
 #main {
     margin-top: 80px;
     padding-bottom: 60px;
 }
+
 #content {
     min-height: 500px;
 }
+
 #side {
     min-height: 500px;
-    background: #eee;
-    padding: 20px;
-    border-radius: 5px;
+    border: 1px solid #eee;
 }
+
 #footer {
     position: fixed;
     width: 100%;
     bottom: 0;
     background: #222;
     text-align: center;
-    padding: 10px;
+    padding-top: 8px;
     border-top: 1px solid #000;
     color: #eee;
 }
 
-a:hover, a:active, a:focus {
-    outline: 0;
-}
-.navbar-brand {
+.modal-header {
+    background: #467;
     color: #fff;
-    font-size: 26px;
-    margin-top: -8px;
 }
-.navbar-inverse {
-    background: #234;
-    padding: 10px;
-}
-.navbar-nav li a {
-    border-radius: 5px;
-}
-.navbar-nav li a:hover, .navbar-nav li.active a {
-    background: #123;
-}
-.glyphicon {
-    top: 2px;
-}
-.navbar-nav li ul li a:hover {
-    background: #fff;
+.error-message {
+    color: #800;
 }

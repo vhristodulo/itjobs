@@ -13,25 +13,15 @@ export class AddJobComponent implements OnInit {
 
   addJobForm: FormGroup;
 
-  categories = [
-    { text: 'Ostalo', value: 'other' },
-    { text: 'Programeri', value: 'developers' },
-    { text: 'Dizajneri', value: 'designers' }
-  ];
+  categories = [];
+  types = [];
+  locations = []
 
-  types = [
-    { text: 'Stalni', value: 'permanent' },
-    { text: 'Privremeni', value: 'part-time'},
-    { text: 'Povremeni', value: 'freelance'}
-  ];
-
-  locations = [
-    { text: 'Bilo gde', value: 'any' },
-    { text: 'Beograd', value: 'Beograd' },
-    { text: 'Novi Sad', value: 'Novi Sad' }
-  ]
-
-  constructor( private jobsService: JobsService, private router: Router ) { }
+  constructor( private jobsService: JobsService, private router: Router ) {
+    this.jobsService.getJobsCategories().subscribe( categories => { this.categories = categories.data; });
+    this.jobsService.getJobsTypes().subscribe( types => { this.types = types.data; });
+    this.jobsService.getJobsLocations().subscribe( locations => { this.locations = locations.data; });
+  }
 
   ngOnInit() {
     let date = new Date();
@@ -40,22 +30,21 @@ export class AddJobComponent implements OnInit {
     this.addJobForm = new FormGroup({
       'title' : new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(255)]),
       'description' : new FormControl(null, Validators.required),
-      'category' : new FormControl('other'),
-      'type' : new FormControl('permanent'),
-      'location' : new FormControl('any'),
+      'job_category_id' : new FormControl('', Validators.required),
+      'job_type_id' : new FormControl('', Validators.required),
+      'job_location_id' : new FormControl('', Validators.required),
+      'job_company_id' : new FormControl('1'),
       'name' : new FormControl(null, Validators.required),
       'email' : new FormControl(null, [Validators.required, Validators.email]),
       'link' : new FormControl(null),
-      'created' : new FormControl(currentDate),
-      'views' : new FormControl('0'),
-      'highlighted' : new FormControl('0')
+      'application_deadline' : new FormControl(currentDate)
     });
   }
 
   onSubmit() {
     if (this.addJobForm.valid) {
       this.jobsService.saveJob(this.addJobForm.value);
-      this.router.navigate(['/jobs/all'], {state: { added: true, subscribed: false }});
+      this.router.navigate(['/jobs'], {state: { added: true, subscribed: false }});
     }
   }
 

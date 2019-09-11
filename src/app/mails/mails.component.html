@@ -1,4 +1,4 @@
-<h2>Mailing lista</h2>
+<h2 class="title">Mailing lista</h2>
 <app-spinner *ngIf="!loaded"></app-spinner>
 <div *ngFor="let mail of mails" @fade>
     <a href="javascript:void(0)" (click)="onDeleteMail(mail.id)" title="Izbriši mail" class="btn btn-default btn-block left-text">

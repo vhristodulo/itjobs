@@ -6,6 +6,7 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <strong>Bravo!</strong> Mail je uspešno dodat na mailing listu
 </div>
+<!--
 <div class="panel">
     <div class="list-group">
         <div class="list-group-item">
@@ -14,9 +15,27 @@
         <app-spinner *ngIf="!loaded"></app-spinner>
         <a @slide routerLink="/job/{{ job.id}}" class="list-group-item" *ngFor="let job of jobs | reverse" [class.highlighted]="job.highlighted == '1'">
             <p class="list-group-item-text date">{{ job.created | date: "dd.MM.yyyy." }}</p>
-            <p class="list-group-item-text type">{{ types[job.type] }}</p>
+            <p class="list-group-item-text type">{{ job.type }}</p>
             <h4 class="list-group-item-heading">{{ job.title }}</h4>
-            <p class="list-group-item-text">{{ locations[job.location] }}, {{ job.name }}</p>
+            <p class="list-group-item-text">{{ job.location }}, {{ job.name }}</p>
         </a>
     </div>
+</div>
+-->
+<h2 class="title">{{ title }}</h2>
+<app-spinner *ngIf="!loaded"></app-spinner>
+<div class="job" *ngFor="let job of jobs" @fade>
+    <div class="job-created">
+        {{ job.created | date: "dd.MMM" }}
+    </div>
+    <div class="job-company">
+        {{ job.name }}
+    </div>
+    <div class="job-title">
+        <a routerLink="/job/{{ job.id}}">{{ job.title }}</a>
+    </div>
+    <div class="job-deadline">
+        {{ job.location }}, {{ job.type }}, do {{ job.deadline | date: "dd.MMM" }}
+    </div>
+    <div class="clear"></div>
 </div>

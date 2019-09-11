@@ -1,0 +1,17 @@
+<h2 class="title">Kategorije</h2>
+<a routerLink="/admin/categories/new">Dodaj kategoriju</a>
+<table class="table">
+    <tr>
+        <th width="30">Id</th>
+        <th>Kategorija</th>
+        <th width="150"></th>
+    </tr>
+    <tr *ngFor="let category of categories">
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>
+            <a routerLink="/admin/categories/change/{{ category.id }}">Izmena</a> /
+            <a href="javascript:void(0)" (click) = "onDelete(category.id)">Brisanje</a>
+        </td>
+    </tr>
+</table>

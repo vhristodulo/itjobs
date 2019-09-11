@@ -24,7 +24,7 @@ export class SubscribeComponent implements OnInit {
   onSubmit() {
     if (this.subscribeForm.valid) {
       this.jobsService.saveMail(this.subscribeForm.value);
-      this.router.navigate(['/jobs/all'], {state: { added: false, subscribed: true }});
+      this.router.navigate(['/jobs'], {state: { added: false, subscribed: true }});
     }
   }
 

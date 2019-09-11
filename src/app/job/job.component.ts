@@ -26,8 +26,8 @@ export class JobComponent implements OnInit {
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
     this.jobsService.getJobById(id).subscribe( job => {
-      job.description = job.description.replace(/\n/g,'<br>');
-      this.job = job;
+      job.data.description = job.data.description.replace(/\n/g,'<br>');
+      this.job = job.data;
       this.loaded = true;
     });
     this.jobsService.updateViews(id);

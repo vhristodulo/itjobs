@@ -8,126 +8,132 @@ import { map } from 'rxjs/operators';
 
 export class JobsService {
 
+  server = 'http://192.168.48.33/api/public';
+  // server = 'https://it-jobs.000webhostapp.com/api/public';
+
   constructor( private http: HttpClient ) { }
 
   getAllJobs() {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/jobs.json')
+    return this.http.get(this.server + '/jobs')
       .pipe(map(responseData => {
-        const jobs = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            jobs.push({ ...responseData[key], id: key});
-          }
-        }
-        return jobs;
+        return JSON.parse(JSON.stringify(responseData));
       }));
   }
 
   getJobById(id: string) {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/jobs.json?orderBy="$key"&equalTo="' + id + '"')
+    return this.http.get(this.server + '/jobs/' + id)
       .pipe(map(responseData => {
-        const jobsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            jobsArray.push({ ...responseData[key], id: key});
-          }
-        }
-        return jobsArray[0];
+        return JSON.parse(JSON.stringify(responseData));
       }));
   }
 
-  getJobsByCategory(category: string) {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/jobs.json?orderBy="category"&equalTo="' + category + '"')
+  getJobsByCategory(categoryId: string) {
+    return this.http.get(this.server + '/jobs?categoryId=' + categoryId)
       .pipe(map(responseData => {
-        const jobsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            jobsArray.push({ ...responseData[key], id: key});
-          }
-        }
-        return jobsArray;
-      }));
-  }
-
-  getHighlightedJobs() {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/jobs.json?orderBy="highlighted"&equalTo="1"&limitToFirst=3')
-      .pipe(map(responseData => {
-        const jobsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            jobsArray.push({ ...responseData[key], id: key});
-          }
-        }
-        return jobsArray;
-      }));
-  }
-
-  getMostViewedJobs() {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/jobs.json?orderBy="views"&limitToFirst=3')
-      .pipe(map(responseData => {
-        const jobsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            jobsArray.push({ ...responseData[key], id: key});
-          }
-        }
-        return jobsArray;
-      }));
-  }
-
-  getMostRecentJobs() {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/jobs.json?orderBy="highlighted"&limitToFirst=3')
-      .pipe(map(responseData => {
-        const jobsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            jobsArray.push({ ...responseData[key], id: key});
-          }
-        }
-        return jobsArray;
+        return JSON.parse(JSON.stringify(responseData));
       }));
   }
 
   getJobsLocations() {
-    return this.http.get("./assets/database/locations.json");
+    return this.http.get(this.server + '/locations')
+      .pipe(map(responseData => {
+        return JSON.parse(JSON.stringify(responseData));
+      }));
+  }
+
+  getJobLocationById(id: string) {
+    return this.http.get(this.server + '/locations/' + id)
+      .pipe(map(responseData => {
+        return JSON.parse(JSON.stringify(responseData));
+      }));
+  }
+
+  saveLocation(locationData) {
+    return this.http.post(this.server + '/locations', locationData);
+  }
+
+  updateLocation(locationData) {
+    return this.http.put(this.server + '/locations', locationData);
+  }
+
+  deleteLocation(id: string) {
+    this.http.delete(this.server + '/locations/' + id).subscribe(responseData => {});
   }
 
   getJobsTypes() {
-    return this.http.get("./assets/database/types.json");
+    return this.http.get(this.server + '/types')
+      .pipe(map(responseData => {
+        return JSON.parse(JSON.stringify(responseData));
+      }));
+  }
+
+  getJobTypeById(id: string) {
+    return this.http.get(this.server + '/types/' + id)
+      .pipe(map(responseData => {
+        return JSON.parse(JSON.stringify(responseData));
+      }));
+  }
+
+  saveType(typeData) {
+    return this.http.post(this.server + '/types', typeData);
+  }
+
+  updateType(typeData) {
+    return this.http.put(this.server + '/types', typeData);
+  }
+
+  deleteType(id: string) {
+    this.http.delete(this.server + '/types/' + id).subscribe(responseData => {});
   }
 
   getJobsCategories() {
-    return this.http.get("./assets/database/categories.json");
+    return this.http.get(this.server + '/categories')
+      .pipe(map(responseData => {
+        return JSON.parse(JSON.stringify(responseData));
+      }));
+  }
+
+  getJobCategoryById(id: string) {
+    return this.http.get(this.server + '/categories/' + id)
+      .pipe(map(responseData => {
+        return JSON.parse(JSON.stringify(responseData));
+      }));
+  }
+
+  saveCategory(categoryData) {
+    return this.http.post(this.server + '/categories', categoryData);
+  }
+
+  updateCategory(categoryData) {
+    return this.http.put(this.server + '/categories', categoryData);
+  }
+
+  deleteCategory(id: string) {
+    this.http.delete(this.server + '/categories/' + id).subscribe(responseData => {});
   }
 
   saveJob(jobData) {
-    this.http.post('https://itjobs-1c71a.firebaseio.com/jobs.json', jobData).subscribe(responseData => {});
+    this.http.post(this.server + '/jobs', jobData).subscribe(responseData => {});
   }
 
   saveMail(mailData) {
-    this.http.post('https://itjobs-1c71a.firebaseio.com/mails.json', mailData).subscribe(responseData => {});
+    this.http.post(this.server + '/subscribe', mailData).subscribe(responseData => {});
   }
 
   getAllMails() {
-    return this.http.get('https://itjobs-1c71a.firebaseio.com/mails.json')
+    return this.http.get(this.server + '/emails')
       .pipe(map(responseData => {
-        const mails = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            mails.push({ ...responseData[key], id: key});
-          }
-        }
-        return mails;
+        return JSON.parse(JSON.stringify(responseData));
       }));
   }
 
   deleteMail(id: string) {
-    this.http.delete('https://itjobs-1c71a.firebaseio.com/mails/' + id + '.json').subscribe(responseData => {});
+    this.http.delete(this.server + '/emails/' + id).subscribe(responseData => {});
   }
 
   updateViews(id: string) {
-    let job = this.http.get('https://itjobs-1c71a.firebaseio.com/jobs/' + id + '.json').subscribe(job => {
-      this.http.patch('https://itjobs-1c71a.firebaseio.com/jobs/' + id + '.json', {'views':++job['views']}).subscribe(responseData => {});
+    return this.http.get(this.server + '/jobs/' + id).subscribe(job => {
+      this.http.patch(this.server + '/jobs/' + id, {'views':++job['data']['views']}).subscribe(responseData => {});
     });
   }
 
